@@ -1,73 +1,95 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        twitch-emote-resize
-      </h1>
-      <h2 class="subtitle">
-        Twitch emote contrast and resize tool
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div class="container mx-auto px-4 py-10">
+    <h1>Twitch Emote Tool</h1>
+
+    <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+      <input
+        id="images"
+        @change="onChange"
+        type="file"
+        name="images"
+        accept="image/*"
+        multiple
+      />
+
+      <div v-for="file in files" :key="file.name" class="flex">
+        <div v-for="size of previewSizes" :key="size">
+          <emote-preview :file="file" :height="size" :width="size" />
+        </div>
       </div>
-    </div>
+
+      <button v-if="canDownload" type="submit">Download</button>
+    </form>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import EmotePreview from '../components/EmotePreview'
+import { saveAs } from 'file-saver'
+import JSZip from 'jszip'
 
 export default {
   components: {
-    Logo
+    EmotePreview
+  },
+
+  data: () => ({
+    files: [],
+    previews: [],
+    previewSizes: [28, 56, 112]
+  }),
+
+  provide() {
+    return {
+      register: this.register,
+      unregister: this.unregister
+    }
+  },
+
+  computed: {
+    canDownload() {
+      return this.files.length
+    }
+  },
+
+  methods: {
+    onChange(e) {
+      this.files = e.target.files
+    },
+
+    async onSubmit() {
+      if (!this.previews.length) {
+        return
+      }
+
+      const zip = new JSZip()
+      await Promise.all(
+        this.previews.map(async (preview) => {
+          const blob = await preview.toBlob()
+
+          const extension = preview.file.name.split('.').pop()
+          zip.file(
+            `${preview.file.name.slice(0, -1 * (extension.length + 1))}${
+              preview.width
+            }x${preview.height}.${extension}`,
+            blob
+          )
+        })
+      )
+
+      const blob = await zip.generateAsync({ type: 'blob' })
+
+      saveAs(blob, 'images.zip')
+    },
+
+    register(item) {
+      this.previews.push(item)
+    },
+
+    unregister(item) {
+      const index = this.previews.indexOf(item)
+      this.previews.splice(index, 1)
+    }
   }
 }
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
