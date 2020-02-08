@@ -66,12 +66,14 @@ export default {
       await Promise.all(
         this.previews.map(async (preview) => {
           const blob = await preview.toBlob()
-
           const extension = preview.file.name.split('.').pop()
+          const filename = preview.file.name.slice(
+            0,
+            -1 * (extension.length + 1)
+          )
+
           zip.file(
-            `${preview.file.name.slice(0, -1 * (extension.length + 1))}${
-              preview.width
-            }x${preview.height}.${extension}`,
+            `${filename}/${filename}${preview.width}x${preview.height}.${extension}`,
             blob
           )
         })
