@@ -51,5 +51,12 @@ export default {
     extend(config, ctx) {
       config.resolve.alias.pica = 'pica/dist/pica.js'
     }
-  }
+  },
+
+  router:
+    process.env.DEPLOY_ENV === 'GH_PAGES'
+      ? {
+          base: '/emote-tool/'
+        }
+      : {}
 }
