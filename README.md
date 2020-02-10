@@ -18,18 +18,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-## Project Structure
-
-### Index
-
-- Image upload area
-
-When image selected:
-
-- Display contrast checker
-- Display download button
-
-When download clicked:
-
-- Compress and download files
