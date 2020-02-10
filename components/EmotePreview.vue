@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import Pica from 'pica'
+
 export default {
   name: 'EmotePreview',
 
@@ -25,16 +27,24 @@ export default {
 
   inject: ['register', 'unregister'],
 
+  data() {
+    return {
+      pica: null
+    }
+  },
+
   created() {
     this.register(this)
 
+    this.pica = new Pica()
     const reader = new FileReader()
     const img = new Image()
     reader.addEventListener('load', (e) => {
       img.src = e.target.result
-      img.addEventListener('load', () => {
-        const ctx = this.$refs.canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0, this.width, this.height)
+      img.addEventListener('load', async () => {
+        await this.pica.resize(img, this.$refs.canvas, {
+          alpha: true
+        })
       })
     })
     reader.readAsDataURL(this.file)
