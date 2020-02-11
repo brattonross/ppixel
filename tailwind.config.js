@@ -29,7 +29,6 @@ module.exports = {
   },
   variants: {
     backgroundColor: ['hover', 'active', 'disabled'],
-    borderColor: ['hover', 'active', 'disabled'],
     textColor: ['hover', 'active', 'disabled']
   },
   plugins: []
