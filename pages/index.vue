@@ -1,44 +1,46 @@
 <template>
   <div class="container py-10">
     <form enctype="multipart/form-data" @submit.prevent="downloadAll">
-      <div class="mb-3">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-semibold">Emotes</h2>
+      <div class="bg-white rounded shadow-md">
+        <div class="p-4 border-b">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">Emotes</h2>
 
-          <div class="flex -mx-1">
-            <div class="px-1">
-              <e-button type="submit">
-                Download All
-                <template #append>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
-                    />
-                  </svg>
-                </template>
-              </e-button>
-            </div>
+            <div class="flex -mx-1">
+              <div class="px-1">
+                <e-button type="submit">
+                  Download All
+                  <template #append>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+                      />
+                    </svg>
+                  </template>
+                </e-button>
+              </div>
 
-            <div class="px-1">
-              <e-button outline @click="$store.commit('uploads/removeAllFiles')"
-                >Clear All</e-button
-              >
+              <div class="px-1">
+                <e-button
+                  outline
+                  @click="$store.commit('uploads/removeAllFiles')"
+                  >Clear All</e-button
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="bg-white rounded shadow-md">
         <div v-for="file in files" :key="file.name" class="p-4 border-b">
           <emote-upload
             :file="file"
