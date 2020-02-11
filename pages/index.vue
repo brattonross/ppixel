@@ -4,11 +4,17 @@
       <div class="bg-white rounded shadow-md">
         <div class="p-4 border-b">
           <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-semibold">Emotes</h2>
+            <div class="flex flex-col">
+              <h2 class="text-2xl font-semibold">Emotes</h2>
+              <p class="text-gray-500 text-sm">
+                Choose images from your computer to preview their apperance in
+                Twitch chat.
+              </p>
+            </div>
 
             <div class="flex -mx-1">
               <div class="px-1">
-                <e-button type="submit">
+                <e-button :disabled="!hasUploaded" type="submit">
                   Download All
                   <template #append>
                     <svg
@@ -32,6 +38,7 @@
 
               <div class="px-1">
                 <e-button
+                  :disabled="!hasUploaded"
                   outline
                   @click="$store.commit('uploads/removeAllFiles')"
                   >Clear All</e-button
