@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="bg-white rounded shadow">
+      <div class="bg-white rounded shadow-md">
         <div v-for="file in files" :key="file.name" class="p-4 border-b">
           <emote-upload
             :file="file"
