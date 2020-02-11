@@ -1,5 +1,9 @@
 module.exports = {
+  important: true,
   theme: {
+    boxShadow: {
+      outline: '0 0 0 3px rgba(107, 70, 193, 0.5)'
+    },
     container: {
       center: true,
       padding: '2rem'
@@ -16,7 +20,9 @@ module.exports = {
     }
   },
   variants: {
-    backgroundColor: ['hover', 'active']
+    backgroundColor: ['hover', 'active', 'disabled'],
+    borderColor: ['hover', 'active', 'disabled'],
+    textColor: ['hover', 'active', 'disabled']
   },
   plugins: []
 }

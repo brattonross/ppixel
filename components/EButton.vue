@@ -41,11 +41,17 @@ export default {
         'hover:bg-purple-200': this.outline,
         'active:bg-purple-900': !this.outline,
         'active:bg-purple-300': this.outline,
+        'disabled:bg-purple-300': !this.outline,
+        'disabled:border-purple-300': true,
+        'disabled:bg-transparent': this.outline,
+        'disabled:text-purple-300': this.outline,
         'px-3': true,
         'py-2': true,
         rounded: true,
         'transition-colors': true,
-        'duration-300': true
+        'duration-300': true,
+        'outline-none': true,
+        'focus:shadow-outline': true
       }
     }
   }
