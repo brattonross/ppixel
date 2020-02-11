@@ -4,10 +4,12 @@
       <div class="container py-6">
         <div class="flex items-center justify-between">
           <nuxt-link to="/">
-            <h1 class="inline-block text-2xl font-semibold">ppixel</h1>
+            <h1 class="inline-block text-gray-900 text-2xl font-semibold">
+              ppixel
+            </h1>
           </nuxt-link>
 
-          <label for="upload" class="relative flex">
+          <image-upload @change="onChange">
             <e-button outline>
               Upload
               <template #append>
@@ -28,17 +30,7 @@
                 </svg>
               </template>
             </e-button>
-            <input
-              id="upload"
-              class="opacity-0 w-full absolute inset-0 cursor-pointer"
-              type="file"
-              name="upload"
-              accept="image/*"
-              title=""
-              multiple
-              @change="onChange"
-            />
-          </label>
+          </image-upload>
         </div>
       </div>
     </header>
@@ -51,12 +43,14 @@
 
 <script>
 import EButton from '../components/EButton'
+import ImageUpload from '../components/ImageUpload'
 
 export default {
   name: 'Default',
 
   components: {
-    EButton
+    EButton,
+    ImageUpload
   },
 
   methods: {
