@@ -1,20 +1,22 @@
-# twitch-emote-resize
+# emote-tool
 
-> Twitch emote contrast and resize tool
+> A tool for resizing and contrast checking Twitch emotes
 
-## Build Setup
+This tool is meant to enhance the workflow of artists making emotes for Twitch.
+
+## Development
 
 ```bash
-# install dependencies
+# Install dependencies
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# Start development server
 $ yarn dev
+```
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+## Build for production
 
-# generate static project
+```bash
+# Generate static site
 $ yarn generate
 ```
