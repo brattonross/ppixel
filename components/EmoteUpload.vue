@@ -3,10 +3,8 @@
     <div class="flex justify-between">
       <span class="text-xl">{{ filename }}</span>
       <div>
-        <e-button text @click="$emit('click:download', file)"
-          >Download</e-button
-        >
-        <e-button text @click="$emit('click:clear')">Clear</e-button>
+        <e-button text @click="$emit('click:download', file)">Save</e-button>
+        <e-button text @click="$emit('click:clear')">Remove</e-button>
       </div>
     </div>
 

@@ -43,7 +43,7 @@
                   :disabled="!hasUploaded"
                   text
                   @click="$store.commit('uploads/removeAllFiles')"
-                  >Clear All</e-button
+                  >Remove All</e-button
                 >
               </div>
             </div>
