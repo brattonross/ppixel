@@ -4,7 +4,9 @@
       <div class="container py-6">
         <div class="flex items-center justify-between">
           <nuxt-link to="/">
-            <h1 class="inline-block text-2xl font-semibold">ppixel</h1>
+            <h1 class="inline-block text-gray-900 text-2xl font-semibold">
+              ppixel
+            </h1>
           </nuxt-link>
 
           <image-upload @change="onChange">
