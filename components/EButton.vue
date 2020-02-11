@@ -21,7 +21,7 @@ export default {
   inheritAttrs: false,
 
   props: {
-    outline: {
+    text: {
       type: Boolean,
       default: false
     }
@@ -30,21 +30,18 @@ export default {
   computed: {
     classes() {
       return {
-        border: true,
-        'border-purple-700': true,
         'font-semibold': true,
-        'text-purple-100': !this.outline,
-        'text-purple-700': this.outline,
-        'bg-transparent': this.outline,
-        'bg-purple-700': !this.outline,
-        'hover:bg-purple-800': !this.outline,
-        'hover:bg-purple-200': this.outline,
-        'active:bg-purple-900': !this.outline,
-        'active:bg-purple-300': this.outline,
-        'disabled:bg-purple-300': !this.outline,
-        'disabled:border-purple-300': true,
-        'disabled:bg-transparent': this.outline,
-        'disabled:text-purple-300': this.outline,
+        'text-purple-100': !this.text,
+        'text-purple-700': this.text,
+        'bg-transparent': this.text,
+        'bg-purple-700': !this.text,
+        'hover:bg-purple-800': !this.text,
+        'hover:bg-purple-200': this.text,
+        'active:bg-purple-900': !this.text,
+        'active:bg-purple-300': this.text,
+        'disabled:bg-purple-300': !this.text,
+        'disabled:bg-transparent': this.text,
+        'disabled:text-purple-300': this.text,
         'px-3': true,
         'py-2': true,
         rounded: true,
