@@ -64,11 +64,7 @@
                 <div class="py-1">
                   <div class="flex items-center justify-center p-2 rounded">
                     <div v-for="size of previewSizes" :key="size" class="px-2">
-                      <emote-preview
-                        :file="file"
-                        :height="size"
-                        :width="size"
-                      />
+                      <emote-canvas :file="file" :height="size" :width="size" />
                     </div>
                   </div>
                 </div>
@@ -78,11 +74,7 @@
                     class="flex items-center justify-center p-2 bg-gray-900 rounded"
                   >
                     <div v-for="size of previewSizes" :key="size" class="px-2">
-                      <emote-preview
-                        :file="file"
-                        :height="size"
-                        :width="size"
-                      />
+                      <emote-canvas :file="file" :height="size" :width="size" />
                     </div>
                   </div>
                 </div>
@@ -128,13 +120,13 @@ import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import { mapState } from 'vuex'
 import EButton from '../components/EButton'
-import EmotePreview from '../components/EmotePreview'
+import EmoteCanvas from '../components/EmoteCanvas'
 import ImageUpload from '../components/ImageUpload'
 
 export default {
   components: {
     EButton,
-    EmotePreview,
+    EmoteCanvas,
     ImageUpload
   },
 
