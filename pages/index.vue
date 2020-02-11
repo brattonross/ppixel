@@ -42,44 +42,12 @@
         </div>
 
         <div class="bg-white rounded shadow">
-          <div
-            v-for="file in files"
-            :key="file.name"
-            class="flex flex-col p-4 border-b"
-          >
-            <div class="flex items-center justify-between">
-              <span class="text-xl">{{ file.name }}</span>
-              <div>
-                <e-button outline @click="download(file)">Download</e-button>
-                <e-button
-                  outline
-                  @click="$store.commit('uploads/removeFile', file)"
-                  >Clear</e-button
-                >
-              </div>
-            </div>
-
-            <div class="my-3">
-              <div class="flex flex-col md:flex-row md:justify-center -my-1">
-                <div class="py-1">
-                  <div class="flex items-center justify-center p-2 rounded">
-                    <div v-for="size of previewSizes" :key="size" class="px-2">
-                      <emote-canvas :file="file" :height="size" :width="size" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="py-1">
-                  <div
-                    class="flex items-center justify-center p-2 bg-gray-900 rounded"
-                  >
-                    <div v-for="size of previewSizes" :key="size" class="px-2">
-                      <emote-canvas :file="file" :height="size" :width="size" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div v-for="file in files" :key="file.name" class="p-4 border-b">
+            <emote-upload
+              :file="file"
+              @click:clear="$store.commit('uploads/removeFile', file)"
+              @click:delete="download(file)"
+            />
           </div>
         </div>
       </div>
@@ -120,19 +88,18 @@ import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import { mapState } from 'vuex'
 import EButton from '../components/EButton'
-import EmoteCanvas from '../components/EmoteCanvas'
+import EmoteUpload from '../components/EmoteUpload'
 import ImageUpload from '../components/ImageUpload'
 
 export default {
   components: {
     EButton,
-    EmoteCanvas,
+    EmoteUpload,
     ImageUpload
   },
 
   data: () => ({
-    previews: [],
-    previewSizes: [28, 56, 112]
+    previews: []
   }),
 
   provide() {
