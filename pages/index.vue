@@ -1,6 +1,10 @@
 <template>
   <div class="container py-10">
-    <form enctype="multipart/form-data" @submit.prevent="downloadAll">
+    <form
+      ref="form"
+      enctype="multipart/form-data"
+      @submit.prevent="downloadAll"
+    >
       <div class="bg-white rounded shadow-md">
         <div class="p-4 border-b">
           <div class="flex items-center justify-between">
@@ -131,6 +135,7 @@ export default {
   methods: {
     onChange(e) {
       this.$store.commit('uploads/addFiles', e.target.files)
+      this.$refs.form.reset()
     },
 
     async download(file) {
