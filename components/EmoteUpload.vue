@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
-    <div class="flex items-center justify-between">
-      <span class="text-xl">{{ file.name }}</span>
+    <div class="flex justify-between">
+      <span class="text-xl">{{ filename }}</span>
       <div>
         <e-button outline @click="$emit('click:download', file)"
           >Download</e-button
@@ -25,8 +25,10 @@
 </template>
 
 <script>
+import { basename } from 'path'
 import EButton from './EButton'
 import EmotePreview from './EmotePreview'
+import { extension } from '@/assets/js/path'
 
 export default {
   name: 'EmoteUpload',
@@ -41,6 +43,13 @@ export default {
       required: true,
       /** Allow any, expects File type. */
       validator: () => true
+    }
+  },
+
+  computed: {
+    filename() {
+      const ext = `.${extension(this.file.name)}`
+      return basename(this.file.name, ext)
     }
   }
 }

@@ -84,12 +84,14 @@
 </template>
 
 <script>
+import { basename } from 'path'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import { mapState } from 'vuex'
-import EButton from '../components/EButton'
-import EmoteUpload from '../components/EmoteUpload'
-import ImageUpload from '../components/ImageUpload'
+import { extension } from '@/assets/js/path'
+import EButton from '@/components/EButton'
+import EmoteUpload from '@/components/EmoteUpload'
+import ImageUpload from '@/components/ImageUpload'
 
 export default {
   components: {
@@ -140,14 +142,11 @@ export default {
       await Promise.all(
         previews.map(async (preview) => {
           const blob = await preview.toBlob()
-          const extension = preview.file.name.split('.').pop()
-          const filename = preview.file.name.slice(
-            0,
-            -1 * (extension.length + 1)
-          )
+          const ext = `.${extension(preview.file.name)}`
+          const filename = basename(preview.file.name, ext)
 
           zip.file(
-            `${filename}/${filename}${preview.width}x${preview.height}.${extension}`,
+            `${filename}/${filename}${preview.width}x${preview.height}${ext}`,
             blob
           )
         })
