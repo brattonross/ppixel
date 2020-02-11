@@ -13,19 +13,11 @@
     <div class="my-3">
       <div class="flex flex-col md:flex-row md:justify-center -my-1">
         <div class="py-1">
-          <div class="flex items-center justify-center p-2 rounded">
-            <div v-for="size of previewSizes" :key="size" class="px-2">
-              <emote-canvas :file="file" :height="size" :width="size" />
-            </div>
-          </div>
+          <emote-preview :file="file" />
         </div>
 
         <div class="py-1">
-          <div class="flex items-center justify-center p-2 bg-gray-900 rounded">
-            <div v-for="size of previewSizes" :key="size" class="px-2">
-              <emote-canvas :file="file" :height="size" :width="size" />
-            </div>
-          </div>
+          <emote-preview background-class="bg-gray-900" :file="file" />
         </div>
       </div>
     </div>
@@ -34,14 +26,14 @@
 
 <script>
 import EButton from './EButton'
-import EmoteCanvas from './EmoteCanvas'
+import EmotePreview from './EmotePreview'
 
 export default {
   name: 'EmoteUpload',
 
   components: {
     EButton,
-    EmoteCanvas
+    EmotePreview
   },
 
   props: {
@@ -50,10 +42,6 @@ export default {
       /** Allow any, expects File type. */
       validator: () => true
     }
-  },
-
-  data: () => ({
-    previewSizes: [28, 56, 112]
-  })
+  }
 }
 </script>
