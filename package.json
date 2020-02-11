@@ -1,6 +1,6 @@
 {
-  "name": "twitch-emote-resize",
-  "version": "1.0.0",
+  "name": "emote-tool",
+  "version": "0.0.1",
   "description": "Twitch emote contrast and resize tool",
   "author": "Ross Bratton",
   "private": true,
