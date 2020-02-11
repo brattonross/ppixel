@@ -75,7 +75,7 @@
           </div>
           <div class="text-xl">
             Drop your emotes here, or
-            <span class="text-indigo-600">browse</span>
+            <span class="text-indigo-600">click to browse</span>
           </div>
         </div>
       </image-upload>
