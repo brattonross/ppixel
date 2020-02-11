@@ -1,6 +1,6 @@
 <template>
   <div class="font-body min-h-screen text-gray-900 bg-gray-100 antialiased">
-    <header class="bg-white border-t-4 border-purple-600 shadow">
+    <header class="bg-white border-t-4 border-purple-700 shadow">
       <div class="container py-6">
         <div class="flex items-center">
           <nuxt-link to="/">
