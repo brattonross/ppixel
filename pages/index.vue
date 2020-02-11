@@ -1,14 +1,20 @@
 <template>
   <div class="container py-10">
     <form enctype="multipart/form-data" @submit.prevent="downloadAll">
-      <div v-if="hasUploaded" class="mb-3">
-        <div class="mb-3">
+      <div class="bg-white rounded shadow-md">
+        <div class="p-4 border-b">
           <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-semibold">Uploads</h2>
+            <div class="flex flex-col">
+              <h2 class="text-2xl font-semibold">Emotes</h2>
+              <p class="text-gray-500 text-sm">
+                Choose images from your computer to preview their apperance in
+                Twitch chat.
+              </p>
+            </div>
 
             <div class="flex -mx-1">
               <div class="px-1">
-                <e-button type="submit">
+                <e-button :disabled="!hasUploaded" type="submit">
                   Download All
                   <template #append>
                     <svg
@@ -32,6 +38,7 @@
 
               <div class="px-1">
                 <e-button
+                  :disabled="!hasUploaded"
                   outline
                   @click="$store.commit('uploads/removeAllFiles')"
                   >Clear All</e-button
@@ -41,44 +48,44 @@
           </div>
         </div>
 
-        <div class="bg-white rounded shadow">
-          <div v-for="file in files" :key="file.name" class="p-4 border-b">
-            <emote-upload
-              :file="file"
-              @click:clear="$store.commit('uploads/removeFile', file)"
-              @click:delete="download(file)"
-            />
-          </div>
+        <div v-for="file in files" :key="file.name" class="p-4 border-b">
+          <emote-upload
+            :file="file"
+            @click:clear="$store.commit('uploads/removeFile', file)"
+            @click:delete="download(file)"
+          />
+        </div>
+
+        <div class="p-4">
+          <image-upload @change="onChange">
+            <div
+              class="flex flex-grow flex-col items-center justify-center text-center border-2 border-gray-400 border-dashed rounded p-16 font-semibold text-gray-500"
+            >
+              <div class="mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"
+                  />
+                </svg>
+              </div>
+              <div class="text-xl">
+                Drop your emotes here, or
+                <span class="text-indigo-600">click to browse</span>
+              </div>
+            </div>
+          </image-upload>
         </div>
       </div>
-
-      <image-upload @change="onChange">
-        <div
-          class="flex flex-grow flex-col items-center justify-center text-center border-2 border-gray-400 border-dashed rounded p-16 font-semibold text-gray-500"
-        >
-          <div class="mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="56"
-              height="56"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"
-              />
-            </svg>
-          </div>
-          <div class="text-xl">
-            Drop your emotes here, or
-            <span class="text-indigo-600">browse</span>
-          </div>
-        </div>
-      </image-upload>
     </form>
   </div>
 </template>

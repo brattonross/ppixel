@@ -31,15 +31,27 @@ export default {
     classes() {
       return {
         border: true,
-        'border-purple-600': true,
+        'border-purple-700': true,
         'font-semibold': true,
         'text-purple-100': !this.outline,
-        'text-purple-600': this.outline,
+        'text-purple-700': this.outline,
         'bg-transparent': this.outline,
-        'bg-purple-600': !this.outline,
+        'bg-purple-700': !this.outline,
+        'hover:bg-purple-800': !this.outline,
+        'hover:bg-purple-200': this.outline,
+        'active:bg-purple-900': !this.outline,
+        'active:bg-purple-300': this.outline,
+        'disabled:bg-purple-300': !this.outline,
+        'disabled:border-purple-300': true,
+        'disabled:bg-transparent': this.outline,
+        'disabled:text-purple-300': this.outline,
         'px-3': true,
         'py-2': true,
-        rounded: true
+        rounded: true,
+        'transition-colors': true,
+        'duration-300': true,
+        'outline-none': true,
+        'focus:shadow-outline': true
       }
     }
   }
