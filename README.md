@@ -1,4 +1,4 @@
-# emote-tool
+# ppixel
 
 > A tool for resizing and contrast checking Twitch emotes
 
