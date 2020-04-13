@@ -14,10 +14,12 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "cuid": "^2.1.8",
     "file-saver": "^2.0.2",
     "jszip": "^3.2.2",
     "nuxt": "^2.11.0",
-    "pica": "^5.1.0"
+    "pica": "^5.1.0",
+    "vue-virtual-scroll-list": "^2.0.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.2",

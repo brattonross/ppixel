@@ -1,15 +1,16 @@
 <template>
-  <canvas ref="canvas" :height="height" :width="width" />
+  <canvas ref="canvas" :width="width" :height="height" />
 </template>
 
 <script>
-import Pica from 'pica'
+import { resize } from '@/assets/js/pica'
 
 export default {
-  name: 'EmotePreview',
+  name: 'EmoteCanvas',
 
   props: {
-    file: {
+    /** HTMLImageElement */
+    image: {
       required: true,
       validator: () => true
     },
@@ -29,25 +30,16 @@ export default {
 
   data() {
     return {
-      pica: null
+      canvas: null
     }
   },
 
   created() {
     this.register(this)
+  },
 
-    this.pica = new Pica()
-    const reader = new FileReader()
-    const img = new Image()
-    reader.addEventListener('load', (e) => {
-      img.src = e.target.result
-      img.addEventListener('load', async () => {
-        await this.pica.resize(img, this.$refs.canvas, {
-          alpha: true
-        })
-      })
-    })
-    reader.readAsDataURL(this.file)
+  async mounted() {
+    this.canvas = await resize(this.image, this.$refs.canvas)
   },
 
   beforeDestroy() {

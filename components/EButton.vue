@@ -21,6 +21,11 @@ export default {
   inheritAttrs: false,
 
   props: {
+    icon: {
+      type: Boolean,
+      default: false
+    },
+
     text: {
       type: Boolean,
       default: false
@@ -31,20 +36,22 @@ export default {
     classes() {
       return {
         'font-semibold': true,
-        'text-purple-100': !this.text,
-        'text-purple-700': this.text,
-        'bg-transparent': this.text,
-        'bg-purple-700': !this.text,
-        'hover:bg-purple-800': !this.text,
-        'hover:bg-purple-200': this.text,
-        'active:bg-purple-900': !this.text,
-        'active:bg-purple-300': this.text,
-        'disabled:bg-purple-300': !this.text,
-        'disabled:bg-transparent': this.text,
-        'disabled:text-purple-300': this.text,
-        'px-3': true,
-        'py-2': true,
-        rounded: true,
+        'text-purple-100': !this.text && !this.icon,
+        'text-purple-700': this.text || this.icon,
+        'bg-transparent': this.text || this.icon,
+        'bg-purple-700': !this.text && !this.icon,
+        'hover:bg-purple-800': !this.text && !this.icon,
+        'hover:bg-purple-200': this.text || this.icon,
+        'active:bg-purple-900': !this.text && !this.icon,
+        'active:bg-purple-300': this.text || this.icon,
+        'disabled:bg-purple-300': !this.text && !this.icon,
+        'disabled:bg-transparent': this.text || this.icon,
+        'disabled:text-purple-300': this.text || this.icon,
+        'px-3': !this.icon,
+        'py-2': !this.icon,
+        'p-2': this.icon,
+        rounded: !this.icon,
+        'rounded-full': this.icon,
         'transition-colors': true,
         'duration-300': true,
         'outline-none': true,

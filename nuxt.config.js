@@ -51,5 +51,9 @@ export default {
     extend(config, ctx) {
       config.resolve.alias.pica = 'pica/dist/pica.js'
     }
+  },
+
+  router: {
+    middleware: 'home'
   }
 }
