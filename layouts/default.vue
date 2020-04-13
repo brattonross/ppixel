@@ -53,7 +53,7 @@
 
       <div class="flex items-center justify-center border-b">
         <div class="px-2">
-          <nuxt-link v-slot="{ href, isActive, navigate }" to="/emotes">
+          <nuxt-link v-slot="{ href, isActive, navigate }" to="/">
             <header-button :active="isActive" :href="href" @click="navigate">
               <template #icon>
                 <svg
