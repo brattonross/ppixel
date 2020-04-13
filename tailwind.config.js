@@ -24,6 +24,14 @@ module.exports = {
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"'
+      ],
+      display: [
+        'Rubik',
+        'Roboto',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"'
       ]
     }
   },
