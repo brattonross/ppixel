@@ -53,8 +53,12 @@
 
       <div class="flex items-center justify-center border-b">
         <div class="px-2">
-          <nuxt-link v-slot="{ href, isActive, navigate }" to="/">
-            <header-button :active="isActive" :href="href" @click="navigate">
+          <nuxt-link v-slot="{ href, isExactActive, navigate }" to="/">
+            <header-button
+              :active="isExactActive"
+              :href="href"
+              @click="navigate"
+            >
               <template #icon>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,8 +82,12 @@
         </div>
 
         <div class="px-2">
-          <nuxt-link v-slot="{ href, isActive, navigate }" to="/badges">
-            <header-button :active="isActive" :href="href" @click="navigate">
+          <nuxt-link v-slot="{ href, isExactActive, navigate }" to="/badges">
+            <header-button
+              :active="isExactActive"
+              :href="href"
+              @click="navigate"
+            >
               <template #icon>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
